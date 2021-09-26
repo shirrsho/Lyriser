@@ -44,6 +44,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileViewHolder
         return fv;
     }
 
+
     private static void showPopUpMenu(View view, String id) {
         PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
         popupMenu.inflate(R.menu.popup_main);
