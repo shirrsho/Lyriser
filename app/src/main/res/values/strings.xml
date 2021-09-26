@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Swaralipi</string>
+    <string name="createNew">btnCreate</string>
+    <string name="pushbtn">pushbtn</string>
+    <string name="popmenubtn">popmenubtn</string>
+    <string name="attachbtn">btn_attach</string>
+    <string name="uploadbtn">uploadbtn</string>
+    <string name="uploading">progressBar</string>
+    <string name="savebtn">savebtn</string>
+    <string name="editbtn">editbtn</string>
+</resources>

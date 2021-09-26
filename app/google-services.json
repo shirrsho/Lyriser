@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "100502934760",
+    "project_id": "swaralipi-338c3",
+    "storage_bucket": "swaralipi-338c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100502934760:android:48b461d3ddc5d36a93e55d",
+        "android_client_info": {
+          "package_name": "com.example.swaralipi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "100502934760-6dfmc60eplbq23i12a7ai917ss2vgkfn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMFOuf4-Fwl8jVGQGJoPUu0ZiexzfELnQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "100502934760-6dfmc60eplbq23i12a7ai917ss2vgkfn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
