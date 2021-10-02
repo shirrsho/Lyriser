@@ -33,37 +33,34 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.post_card,parent,false);
         PostViewHolder pv = new PostViewHolder(view);
+
         pv.itemView.setOnClickListener(e -> {
             Toast.makeText(context,pv.datasub.getText(), Toast.LENGTH_SHORT).show();
             Intent i = new Intent(view.getContext(),PostView.class);
+
             for ( Post post : postList) {
-                System.out.println(post.getmatchId());
+
                 if(post.getmatchId().contentEquals(pv.idMatch.getText())){
                     i.putExtra("data",post.getData());
                     i.putExtra("id",post.getmatchId());
                     i.putExtra("title",post.getTitle());
                     break;
                 }
+
             }
             context.startActivity(i);
         });
-
-//        pv.itemView.setOnLongClickListener(e -> {
-//            showPopUpMenu(parent,pv.idMatch.getText().toString());
-//            return true;
-//        });
         return pv;
     }
 
     private static void showPopUpMenu(View view, String id) {
         PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
         popupMenu.inflate(R.menu.popup_main);
-        //popupMenu.setGravity(Gravity.CENTER);
-        //DatabaseReference databaseReference;
+
         popupMenu.setOnMenuItemClickListener(e -> {
+
             switch (e.getItemId()){
                 case R.id.deletebtn :
-                    System.out.println("sadasda:"+id);
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("posts").child(id);
                     databaseReference.removeValue();
                     return true;
@@ -79,7 +76,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         holder.title.setText(post.getTitle());
         holder.datasub.setText(post.getData());
         holder.idMatch.setText(post.getmatchId());
-        //postList.get(position).
     }
 
     @Override
@@ -105,12 +101,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             popmenu.setOnClickListener(e -> {
                 showPopUpMenu(itemView,idMatch.getText().toString());
             });
-
-            /*itemView.setOnClickListener(e -> {
-                Toast.makeText(null,itemView., Toast.LENGTH_SHORT).show();
-            });*/
-
-
         }
     }
 }

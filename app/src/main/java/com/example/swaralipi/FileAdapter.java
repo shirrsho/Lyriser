@@ -48,17 +48,19 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileViewHolder
     private static void showPopUpMenu(View view, String id) {
         PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
         popupMenu.inflate(R.menu.popup_main);
-        //popupMenu.setGravity(Gravity.CENTER);
-        //DatabaseReference databaseReference;
+
         popupMenu.setOnMenuItemClickListener(e -> {
             switch (e.getItemId()){
+
                 case R.id.deletebtn :
-                    System.out.println("sadasda:"+id);
+
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("files").child(id);
                     databaseReference.removeValue();
+
                     StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(id);
                     storageReference.delete();
                     return true;
+
             }
             return false;
         });
@@ -87,6 +89,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileViewHolder
         public FileViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
+
             fileTitle = itemView.findViewById(R.id.tvFileTitle);
             fileOrgId = itemView.findViewById(R.id.tvMatchfile);
             popmenufile = itemView.findViewById(R.id.filepopmenubtn);

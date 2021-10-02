@@ -24,8 +24,10 @@ public class DialogFileName extends AppCompatDialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         View view = getActivity().getLayoutInflater().inflate(R.layout.file_name_dialog,null);
+
         EditText etfileName = view.findViewById(R.id.etgetFileName);
         etfileName.setText(fill);
         etfileName.selectAll();

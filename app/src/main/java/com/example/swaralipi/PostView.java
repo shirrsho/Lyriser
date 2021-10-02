@@ -93,39 +93,38 @@ public class PostView extends AppCompatActivity implements DialogFileName.Dialog
 
 
         editbtn.setOnClickListener(e -> {
-            //savebtn.setX(editbtn.getX()); savebtn.setY(editbtn.getY());
             editbtn.setVisibility(View.GONE);
             savebtn.setVisibility(View.VISIBLE);
 
-            //data.setX(etData.getX()); data.setY(etData.getY());
-            //etData.setX(data.getX()); etData.setY(data.getY());
             etData.setText(data.getText().toString());
             data.setVisibility(View.GONE);
             etData.setVisibility(View.VISIBLE);
 
-            //etTitle.setX(title.getX()); etTitle.setY(title.getY());
             etTitle.setText(title.getText().toString());
             title.setVisibility(View.GONE);
             etTitle.setVisibility(View.VISIBLE);
             etTitle.requestFocus();
             etTitle.selectAll();
-            System.out.println("jkjeijeidjejdjdjdjajjsdjsdjsdsjsdjsdj");
         });
 
         savebtn.setOnClickListener(e -> {
-            //Post post = new Post(id,id,title.getText().toString(),data.getText().toString());
+
             if(etTitle.getText().toString().length()==0){
                 Toast.makeText(PostView.this,"Title Mandatory",Toast.LENGTH_SHORT).show();
             }
             else {
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("posts");
                 databaseReference.child(getId).setValue(new Post(getId, getId, etTitle.getText().toString(), etData.getText().toString()));
+
                 savebtn.setVisibility(View.GONE);
                 editbtn.setVisibility(View.VISIBLE);
+
                 data.setText(etData.getText());
                 title.setText(etTitle.getText());
                 etData.setVisibility(GONE);
+
                 data.setVisibility(View.VISIBLE);
+
                 Toast.makeText(PostView.this,"Edited",Toast.LENGTH_SHORT).show();
             }
         });
@@ -133,9 +132,6 @@ public class PostView extends AppCompatActivity implements DialogFileName.Dialog
         attachments_btn.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
-
-                   //recyclerView = findViewById(R.id.rvB);
-
 
                    BottomSheetDialog bottomSheetDialog = new
                            BottomSheetDialog(PostView.this, R.style.BottomSheetDialogTheme);
@@ -152,6 +148,7 @@ public class PostView extends AppCompatActivity implements DialogFileName.Dialog
                    databaseReference = FirebaseDatabase.getInstance().getReference().child("files");
                    fileArrayList = new ArrayList<>();
                    fileRVclickListener();
+
                    fileAdapter = new FileAdapter(getApplicationContext(), fileArrayList,listener);
                    recyclerView.setLayoutManager(new LinearLayoutManager(PostView.this));
                    recyclerView.setAdapter(fileAdapter);
@@ -166,7 +163,6 @@ public class PostView extends AppCompatActivity implements DialogFileName.Dialog
                                fileArrayList.add(file);
                                fileAdapter.notifyDataSetChanged();
                            }
-
                        }
 
                        @Override
@@ -192,6 +188,7 @@ public class PostView extends AppCompatActivity implements DialogFileName.Dialog
                             progressBar.setVisibility(GONE);
                             attachbtn.setVisibility(View.VISIBLE);
                             uploadbtn.setVisibility(GONE);
+
                             fileTitle.setVisibility(GONE);
                             fileUri = null;
                             Toast.makeText(PostView.this,"Upload Successful",Toast.LENGTH_SHORT).show();
@@ -205,7 +202,6 @@ public class PostView extends AppCompatActivity implements DialogFileName.Dialog
                     public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
                         uploadbtn.setVisibility(View.INVISIBLE);
                         attachbtn.setVisibility(View.INVISIBLE);
-                        //progressBar.setX(attachbtn.getX()); progressBar.setY(progressBar.getY());
                         progressBar.setVisibility(View.VISIBLE);
                     }
                 }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -244,7 +240,6 @@ public class PostView extends AppCompatActivity implements DialogFileName.Dialog
                     if(result!=null){
                         fileUri = result;
                         uploadbtn.setVisibility(View.VISIBLE);
-                        //fileTitle.setText(fileUri.getLastPathSegment());
 
                         DialogFileName dialogFileName = new DialogFileName(fileUri.getLastPathSegment());
                         dialogFileName.show(getSupportFragmentManager(),"chilled dialog");

@@ -24,19 +24,14 @@ public class ExoPlayer extends AppCompatActivity {
         url = getIntent().getStringExtra("url");
 
         SimpleExoPlayer exoPlayer = new SimpleExoPlayer.Builder(this).build();
-
         PlayerView playerView = findViewById(R.id.exoPlayer);
-
-        Uri uri = Uri.parse(url);
-
         playerView.setPlayer(exoPlayer);
 
+        Uri uri = Uri.parse(url);
         MediaItem mediaItem = MediaItem.fromUri(uri);
 
         exoPlayer.addMediaItem(mediaItem);
-
         exoPlayer.prepare();
-
         exoPlayer.play();
     }
 }

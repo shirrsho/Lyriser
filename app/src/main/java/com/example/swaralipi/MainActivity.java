@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        System.out.println("/ndhon/n");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -37,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("posts");
 
         postArrayList = new ArrayList<>();
-
         postAdapter = new PostAdapter(this, postArrayList);
 
         recyclerView.setAdapter(postAdapter);
@@ -46,11 +44,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 postArrayList.clear();
+
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Post post = dataSnapshot.getValue(Post.class);
                     postArrayList.add(post);
                     postAdapter.notifyDataSetChanged();
                 }
+
             }
 
             @Override

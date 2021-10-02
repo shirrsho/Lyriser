@@ -61,7 +61,7 @@ public class Create extends AppCompatActivity {
         etData.setVisibility(View.VISIBLE);
 
         savebtn.setOnClickListener(e -> {
-            //Post post = new Post(id,id,title.getText().toString(),data.getText().toString());
+
             getTitle = etTitle.getText().toString();
             getData = etData.getText().toString();
             getId = newEntry();
@@ -76,14 +76,19 @@ public class Create extends AppCompatActivity {
     }
 
     private String newEntry(){
+
         DatabaseReference databasePosts;
         databasePosts = FirebaseDatabase.getInstance().getReference("posts");
         String id = null;
+
         if(getTitle.length()!=0){
+
             id = databasePosts.push().getKey();
             Post post = new Post(id,id,getTitle,getData);
+
             assert id != null;
             databasePosts.child(id).setValue(post);
+
             Toast.makeText(getApplicationContext(),"Pushed", Toast.LENGTH_SHORT).show();
         }
         else{
@@ -92,34 +97,3 @@ public class Create extends AppCompatActivity {
         return id;
     }
 }
-
-/*
-        extends Activity {
-
-    //Database
-    DatabaseReference databasePosts;
-
-    EditText title;
-    EditText data;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create);
-        databasePosts = FirebaseDatabase.getInstance().getReference("posts");
-        title = (EditText) findViewById(R.id.etTitle);
-        data = (EditText) findViewById(R.id.etData);
-    }
-
-    public void newEntry(View view){
-        if(title.getText().toString().length()!=0){
-            String id = databasePosts.push().getKey();
-            Post post = new Post(id,id,title.getText().toString(),data.getText().toString());
-            databasePosts.child(id).setValue(post);
-            Toast.makeText(getApplicationContext(),"Pushed", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(getApplicationContext(),"Title mandatory", Toast.LENGTH_SHORT).show();
-        }
-    }
-}
-*/

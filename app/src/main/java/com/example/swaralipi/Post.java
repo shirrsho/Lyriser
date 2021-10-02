@@ -1,7 +1,5 @@
 package com.example.swaralipi;
 
-import java.util.ArrayList;
-
 public class Post {
 
     String id, title, data, matchId;
